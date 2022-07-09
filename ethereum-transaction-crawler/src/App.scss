@@ -1,0 +1,101 @@
+// google fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+// variables
+$yellow: rgb(255, 192, 0);
+$lightGray: #d3d3d3;
+$white: rgb(253, 244, 244);
+$fontGray:rgb(185, 191, 206);
+$background:rgb(18, 22, 33);
+$lightBackground:rgb(27, 33, 45);
+$fontFamily: 'Montserrat',sans-serif;
+$transition-in: .4s ease-in;
+$transition-out: .6s ease-out;
+
+// DEFAULT STYLES
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    line-height: 1.6;
+    font-family: $fontFamily;
+    background-color: $fontGray;
+    scroll-behavior: smooth;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+
+    @media(max-width:768px){
+        width: 90%;
+    }
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    color: $lightGray;
+    transition: $transition-out;
+
+    &:hover{
+        transition: $transition-in;
+        color: $yellow;
+    }
+}
+
+
+
+// table
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+
+    .tableBox{
+        margin-top: 5%;
+        width: 100%;
+        height: 80vh;
+        background-color: $white;
+        overflow-y: scroll;
+    
+    
+        table{
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+    
+            tbody{    
+                tr{ 
+                    
+                    &:nth-child(even){
+                        background-color:$lightGray;
+                    }
+    
+                    td,th{
+                        width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        text-align: left;
+                        height: 50px;
+                        padding: 10px;
+                        
+                    }
+                }
+            }
+        }
+    }
+}
