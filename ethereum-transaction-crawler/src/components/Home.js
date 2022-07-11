@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import API from '../assets/api';
 import {apiKey} from'../assets/apiKey';
+import Skeleton from '../Skeleton';
 import Form from './Form';
 import PageButtons from './PageButtons';
 import Table from './Table';
@@ -48,7 +49,7 @@ const Home = () => {
     return ( 
         <section className='home container'>
              <Form getInfo={getInfo}/>
-            {!loading? <Table data={data}/>:"no data"}
+            {!loading? <Table data={data}/>:<Skeleton/>}
             <PageButtons handlePages={handlePages} page={page}/>
         </section>
      );

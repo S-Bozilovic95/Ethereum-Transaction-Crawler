@@ -13,6 +13,17 @@ $fontFamily: 'Montserrat',sans-serif;
 $transition-in: .2s ease-in;
 $transition-out: .2s ease-out;
 
+// animation
+@keyframes blink{
+    0%{
+        background-color: $fontGray;
+    }
+
+    50%{
+        background-color: $gray;
+    }
+}
+
 // DEFAULT STYLES
 *{
     margin: 0;
@@ -169,5 +180,41 @@ button{
         text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.664);
         padding: 20px;
         display: inline-block;
+    }
+}
+
+
+// noResult
+.noResult{
+    text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.411);
+    margin: 15% auto;
+    text-align: center;
+
+    h2{
+        font-size: 4rem;
+        
+    }
+}
+
+// skeleton
+.skeleton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+    background-color: $lightGray;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.233);
+    margin-top: 5%;
+    border-radius: 5px;
+    width: 100%;
+    padding: 20px;
+
+    p{
+        background-color: $fontGray;
+        height: 5vh;
+        width: 100%;
+        animation: blink 3s $transition-in infinite;
+
     }
 }
