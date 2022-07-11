@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import API from '../assets/api';
 import {apiKey} from'../assets/apiKey';
+import moment from 'moment';
 
 
 const TableItem = ({info}) => {
@@ -11,12 +12,14 @@ const TableItem = ({info}) => {
     })
     const {data,loading}= name;
 
+
+
     const getName = async(address)=>{
         let response = await API.get(`?module=contract&action=getsourcecode&address=${address}&apikey=${apiKey}`);
         setName({...name, data:response.data.result[0].ContractName, loading:false});
     }
 
-    console.log(info);
+
 
     useEffect(()=>{
         getName(info.to)
@@ -36,7 +39,7 @@ const TableItem = ({info}) => {
                 {info.blockNumber}
             </td>
             <td>
-                {new Date(info.timeStamp*1000).toLocaleDateString("en-US")}
+                {moment(info.timeStamp*1000).utc().format('YYYY-MM-DD HH:mm')}
             </td>
             <td>
                 {info.from}
@@ -45,7 +48,7 @@ const TableItem = ({info}) => {
                 {data===undefined?info.to:data}
             </td>
             <td>
-                {info.value} Ether
+                {info.value>0?(info.value/1000000000000000000).toFixed(8):0} Ether
             </td>
             <td>
                 {(info.gasUsed*info.gasPrice/1000000000000000000).toFixed(8)} 
