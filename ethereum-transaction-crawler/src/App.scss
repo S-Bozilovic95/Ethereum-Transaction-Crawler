@@ -3,15 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 // variables
-$yellow: rgb(255, 192, 0);
-$lightGray: #d3d3d3;
-$white: rgb(253, 244, 244);
+$blue:rgb(87, 152, 201);
+$gray:rgb(103, 117, 128);
+$lightGray: rgb(237, 239, 245);
+$white: #ffffff;
 $fontGray:rgb(185, 191, 206);
-$background:rgb(18, 22, 33);
-$lightBackground:rgb(27, 33, 45);
+$background:#f8f9fb;
 $fontFamily: 'Montserrat',sans-serif;
-$transition-in: .4s ease-in;
-$transition-out: .6s ease-out;
+$transition-in: .2s ease-in;
+$transition-out: .2s ease-out;
 
 // DEFAULT STYLES
 *{
@@ -23,12 +23,13 @@ $transition-out: .6s ease-out;
 body{
     line-height: 1.6;
     font-family: $fontFamily;
-    background-color: $fontGray;
+    background-color: $background;
     scroll-behavior: smooth;
 }
 
 h1,h2,h3,h4,h5,h6{
     font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
 .container{
@@ -40,20 +41,27 @@ h1,h2,h3,h4,h5,h6{
     }
 }
 
-ul{
-    list-style-type: none;
-}
-
-a{
-    text-decoration: none;
-    color: $lightGray;
+button{
+    padding: 9px;
+    border: none;
+    border-radius: 5px;
+    background-color: $blue;
+    font-size: 1em;
     transition: $transition-out;
-
+    color: $white;
+    
     &:hover{
+        box-shadow: 0px 0px 5px $blue;
         transition: $transition-in;
-        color: $yellow;
+        cursor: pointer;
+    }
+
+    &:active{
+        transform: scale(0.8);
     }
 }
+
+
 
 
 
@@ -66,9 +74,35 @@ a{
     padding: 50px 0px;
 }
 
+// form
+.form{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    input{
+        width: 100%;
+        padding: 10px 35px 5px 10px;
+        font-size: 1.1em;
+        outline: none;
+        border: 1px solid $fontGray;
+        border-radius:5px;
+        color: $gray;
+    }
+
+    button{
+        position: absolute;
+        right: 0px;
+        padding: 9px;
+        border-radius:0px 5px 5px 0px;
+    }
+}
 
 // table
 .tableBox{
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.233);
     margin-top: 5%;
     width: 100%;
     background-color: $white;
@@ -80,19 +114,23 @@ a{
 
         tbody{    
             tr{ 
-                
+                border-bottom: 1px solid $lightGray;
+
                 &:nth-child(even){
-                    background-color:$lightGray;
+                    background-color:$background;
                 }
 
                 &:first-child{
                     top: 0;
                     position: sticky;
-                    background-color: $yellow;
+                    background-color: $lightGray;
+                    border: none;
+                    color: $gray;
+                    font-size: 1em;
+                    font-weight: 300;
                 }
 
                 td,th{
-                    width: 100%;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
@@ -100,7 +138,24 @@ a{
                     height: 50px;
                     padding: 10px;
                 }
+
+                th{
+                    font-weight: 600;
+                }
             }
         }
+    }
+}
+
+
+// pageButtons
+.pageBox{
+    margin-top: 3%;
+
+    span{
+        font-size: 1.3em;
+        text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.664);
+        padding: 20px;
+        display: inline-block;
     }
 }

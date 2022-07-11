@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import API from '../assets/api';
 import {apiKey} from'../assets/apiKey';
 import Form from './Form';
+import PageButtons from './PageButtons';
 import Table from './Table';
 
 const Home = () => {
+    // states & hooks
     const [info, setInfo] = useState({
         data:[],
         loading:true,
@@ -13,10 +15,10 @@ const Home = () => {
     const {data,loading} = info;   
     const prevAddress = useRef();
 
-
+    // functions
     const getInfo = async(address)=>{
         if(prevAddress.current === address){
-            let response = await API.get(`?module=account&action=txlist&address=${address}&startblock=9000000&endblock=latest&page=${page}&offset=20&sort=desc&apikey=${apiKey}`);
+            let response = await API.get(`?module=account&action=txlist&address=${address}&startblock=9000000&endblock=latest&page=${page}&offset=30&sort=desc&apikey=${apiKey}`);
             setInfo({...info, data:response.data.result, loading:false});
             localStorage.setItem("wallet",address);
 
@@ -37,16 +39,17 @@ const Home = () => {
         }
     }
 
-
+    
     useEffect(()=>{
         prevAddress.current= localStorage.wallet;
         getInfo(localStorage.wallet)
-    },[])
+    },[page])
 
     return ( 
         <section className='home container'>
              <Form getInfo={getInfo}/>
             {!loading? <Table data={data}/>:"no data"}
+            <PageButtons handlePages={handlePages} page={page}/>
         </section>
      );
 }

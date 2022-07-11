@@ -16,7 +16,7 @@ const Form = ({getInfo}) => {
     
 
     return ( 
-            <form onSubmit={(e)=>handleAddress(e)}>
+            <form className='form' onSubmit={(e)=>handleAddress(e)}>
                 <input  type="text" value={address} placeholder='Search by address...' minLength={3} onChange={(e)=>setAddress(e.target.value)} required/>
                 <button type='submit'><FaSearch/></button>
             </form>
