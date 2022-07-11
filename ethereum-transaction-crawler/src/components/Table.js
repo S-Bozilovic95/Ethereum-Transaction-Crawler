@@ -18,7 +18,7 @@ const Table = ({data}) => {
                 </tr>
 
                 {
-                    data!== undefined?
+                    typeof(data)!== "string" ?
                     data.map((el,index)=>{
                         return <TableItem info={el} key={index}/>
                     }):"no result"

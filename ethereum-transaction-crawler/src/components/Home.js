@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import API from '../assets/api';
 import {apiKey} from'../assets/apiKey';
+import Form from './Form';
 import Table from './Table';
 
 const Home = () => {
@@ -8,20 +9,43 @@ const Home = () => {
         data:[],
         loading:true,
     })
+    const [page, setPage] = useState(1);
+    const {data,loading} = info;   
+    const prevAddress = useRef();
 
-    const {data,loading} = info;
 
-    const getInfo = async()=>{
-        let response = await API.get(`?module=account&action=txlist&address=0xaA7a9CA87d3694B5755f213B5D04094b8d0F0A6F&startblock=9000000&endblock=latest&page=1&offset=50&sort=desc&apikey=${apiKey}`);
-        setInfo({...info, data:response.data.result, loading:false});
+    const getInfo = async(address)=>{
+        if(prevAddress.current === address){
+            let response = await API.get(`?module=account&action=txlist&address=${address}&startblock=9000000&endblock=latest&page=${page}&offset=20&sort=desc&apikey=${apiKey}`);
+            setInfo({...info, data:response.data.result, loading:false});
+            localStorage.setItem("wallet",address);
+
+        }else  if(prevAddress.current != address){
+            setPage(1)
+            setInfo({...info,loading:true})
+            let response = await API.get(`?module=account&action=txlist&address=${address}&startblock=9000000&endblock=latest&page=${page}&offset=20&sort=desc&apikey=${apiKey}`);
+            setInfo({...info, data:response.data.result, loading:false});
+            localStorage.setItem("wallet",address);
+        }
     }
 
+    const handlePages=(value)=>{
+        if(value==="-" && page>1){
+            setPage(page-1);
+        }else if( value==="+"){
+            setPage(page+1);
+        }
+    }
+
+
     useEffect(()=>{
-        getInfo()
+        prevAddress.current= localStorage.wallet;
+        getInfo(localStorage.wallet)
     },[])
 
     return ( 
         <section className='home container'>
+             <Form getInfo={getInfo}/>
             {!loading? <Table data={data}/>:"no data"}
         </section>
      );
