@@ -13,7 +13,6 @@ const Home = () => {
         loading:true,
     })
     const [page, setPage] = useState(1);
-    const[show,setShow]=useState(false);
     const {data,loading} = info;   
     const prevAddress = useRef();
 
@@ -41,13 +40,6 @@ const Home = () => {
         }
     }
 
-    const handleDetails = () =>{
-        if(show){
-            setShow(false);
-        }else{
-            setShow(true);
-        }
-    }
 
     
     useEffect(()=>{
@@ -59,8 +51,7 @@ const Home = () => {
     return ( 
         <section className='home container'>
              <Form getInfo={getInfo}/>
-             <button onClick={()=>handleDetails()} className="changeBtn">{!show?"show detailed":"show regular"}</button>
-            {!loading? <Table data={data} show={show}/>:<Skeleton/>}
+            {!loading? <Table data={data}/>:<Skeleton/>}
             <PageButtons handlePages={handlePages} page={page}/>
         </section>
      );

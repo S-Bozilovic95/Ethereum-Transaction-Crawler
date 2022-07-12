@@ -88,7 +88,7 @@ button{
 // changeBtn
 .changeBtn{
     position: absolute;
-    top: 15%;
+    top: 20%;
     right: 10%;
     z-index: 1;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.253);
@@ -96,6 +96,12 @@ button{
     @media (max-width:1024px) {
         right: 5%;
         top: 10%;
+    }
+
+    @media (max-width:520px) {
+        position: relative;
+        margin: 20px 0px 0px 15px;
+        align-self: flex-start;
     }
 }
 
@@ -139,6 +145,10 @@ button{
     margin-top: 10%;
     width: 100%;
     background-color: $white;
+
+    @media (max-width:520px) {
+        margin-top: 0px;
+    }
     
 
     .detailed{
@@ -191,7 +201,7 @@ button{
                 }
 
                 img{
-                    width: 30%;
+                    height: 5vh;
                 }
             }
         }
@@ -249,7 +259,7 @@ button{
         background-color: $fontGray;
         height: 5vh;
         width: 100%;
-        animation: blink 3s $transition-in infinite;
+        animation: blink 1.3s $transition-in infinite;
 
         @media (max-width:768px) {
             font-size: 2vh;

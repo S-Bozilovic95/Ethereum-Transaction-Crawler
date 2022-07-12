@@ -2,13 +2,24 @@ import React, { useState } from 'react';
 import NoResult from './NoResult';
 import TableItem from './TableItem';
 
-const Table = ({data, show}) => {
+const Table = ({data}) => {
+    const[show,setShow]=useState(false);
+
+    const handleDetails = () =>{
+        if(show){
+            setShow(false);
+        }else{
+            setShow(true);
+        }
+    }
  
 
     return ( 
       <>
         {typeof(data)!== "string" ?(
-           <div className='tableBox container' style={show?{overflow:"auto"}:null}>
+           <>
+           <button onClick={()=>handleDetails()} className="changeBtn">{!show?"show detailed":"show regular"}</button>
+            <div className='tableBox container' style={show?{overflow:"auto"}:null}>
                 <table className={show?'detailed':'regular'}>
                     <tbody>
                         <tr>
@@ -26,6 +37,7 @@ const Table = ({data, show}) => {
                     </tbody>
                 </table>
            </div>
+           </>
         ):<NoResult/>}
       </>
      );
