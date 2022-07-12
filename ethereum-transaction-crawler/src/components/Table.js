@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NoResult from './NoResult';
 import TableItem from './TableItem';
 
-const Table = ({data}) => {
+const Table = ({data, show}) => {
+ 
 
     return ( 
       <>
-
         {typeof(data)!== "string" ?(
-           <div className='tableBox container'>
-                <table>
+           <div className='tableBox container' style={show?{overflow:"auto"}:null}>
+                <table className={show?'detailed':'regular'}>
                     <tbody>
                         <tr>
                             <th>Taxation Hash:</th>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import API from '../assets/api';
 import {apiKey} from'../assets/apiKey';
 import moment from 'moment';
+import loadGif from '../img/loading.gif';
 
 
 const TableItem = ({info}) => {
@@ -29,6 +30,7 @@ const TableItem = ({info}) => {
         <tr>
             <td>
                 {info.input}
+                <span>{info.input}</span>
             </td>
             <td>
                 {info.blockNumber}
@@ -40,7 +42,7 @@ const TableItem = ({info}) => {
                 {info.from}
             </td>
             <td>
-                {data===undefined?info.to:data}
+                {loading?<img src={loadGif}/>:data===undefined?info.to:data}
             </td>
             <td>
                 {info.value>0?(info.value/1000000000000000000).toFixed(8):0} Ether

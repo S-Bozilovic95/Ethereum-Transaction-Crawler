@@ -85,6 +85,20 @@ button{
     padding: 50px 0px;
 }
 
+// changeBtn
+.changeBtn{
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    z-index: 1;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.253);
+
+    @media (max-width:1024px) {
+        right: 5%;
+        top: 10%;
+    }
+}
+
 // form
 .form{
     width: 40%;
@@ -92,6 +106,10 @@ button{
     justify-content: center;
     align-items: center;
     position: relative;
+
+    @media (max-width:768px) {
+        width: 80%;
+    }
 
     input{
         width: 100%;
@@ -118,28 +136,34 @@ button{
 // table
 .tableBox{
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.233);
-    margin-top: 5%;
+    margin-top: 10%;
     width: 100%;
     background-color: $white;
     
-    @media (max-width:768px) {
+
+    .detailed{
         overflow: auto;
+    }
+
+    .regular{
+        table-layout: fixed;
     }
 
     table{
         width: 100%;
-        table-layout: fixed;
         border-collapse: collapse;
+        position: relative;
 
         @media (max-width:768px) {
             table-layout: unset;
         }
 
+
         tbody{    
             tr{ 
                 border-bottom: 1px solid $lightGray;
 
-                &:nth-child(even){
+                &:nth-of-type(even){
                     background-color:$background;
                 }
 
@@ -165,6 +189,10 @@ button{
                 th{
                     font-weight: 600;
                 }
+
+                img{
+                    width: 30%;
+                }
             }
         }
     }
@@ -180,6 +208,10 @@ button{
         text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.664);
         padding: 20px;
         display: inline-block;
+
+        @media (max-width:768px) {
+            font-size: 1em;
+        }
     }
 }
 
@@ -192,7 +224,10 @@ button{
 
     h2{
         font-size: 4rem;
-        
+
+        @media (max-width:768px) {
+            font-size: 2rem;
+        }
     }
 }
 
@@ -216,5 +251,8 @@ button{
         width: 100%;
         animation: blink 3s $transition-in infinite;
 
+        @media (max-width:768px) {
+            font-size: 2vh;
+        }
     }
 }

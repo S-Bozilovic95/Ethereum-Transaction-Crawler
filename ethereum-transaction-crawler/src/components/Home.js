@@ -13,6 +13,7 @@ const Home = () => {
         loading:true,
     })
     const [page, setPage] = useState(1);
+    const[show,setShow]=useState(false);
     const {data,loading} = info;   
     const prevAddress = useRef();
 
@@ -40,16 +41,26 @@ const Home = () => {
         }
     }
 
+    const handleDetails = () =>{
+        if(show){
+            setShow(false);
+        }else{
+            setShow(true);
+        }
+    }
+
     
     useEffect(()=>{
         prevAddress.current= localStorage.wallet;
-        getInfo(localStorage.wallet)
+        getInfo(localStorage.wallet);
+        window.scrollTo({top:0,behavior:'smooth'});
     },[page])
 
     return ( 
         <section className='home container'>
              <Form getInfo={getInfo}/>
-            {!loading? <Table data={data}/>:<Skeleton/>}
+             <button onClick={()=>handleDetails()} className="changeBtn">{!show?"show detailed":"show regular"}</button>
+            {!loading? <Table data={data} show={show}/>:<Skeleton/>}
             <PageButtons handlePages={handlePages} page={page}/>
         </section>
      );
